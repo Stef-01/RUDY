@@ -5,56 +5,6 @@ import { initAnimations, slideStrip } from './animations.js';
 inject();
 injectSpeedInsights();
 
-/* ---- Hero: YouTube background with cover-math (spec 02) ---- */
-function setupHero() {
-  const mount = document.getElementById('heroVideo');
-  if (!mount) return;
-  const videoId = mount.dataset.videoId;
-  const hero = mount.closest('.hero');
-
-  // Original inline style @1440×1235: width 2195.56, inset 0 0 0 -377.78 → cover + center
-  const cover = el => {
-    const bw = hero.clientWidth, bh = hero.clientHeight;
-    let w = bw, h = bw * 9 / 16;
-    if (h < bh) { h = bh; w = bh * 16 / 9; }
-    // slight overscan like Squarespace to hide YT edges
-    Object.assign(el.style, {
-      width: w + 'px', height: h + 'px',
-      left: (bw - w) / 2 + 'px', top: (bh - h) / 2 + 'px',
-    });
-  };
-
-  const tag = document.createElement('script');
-  tag.src = 'https://www.youtube.com/iframe_api';
-  document.head.appendChild(tag);
-
-  window.onYouTubeIframeAPIReady = () => {
-    const holder = document.createElement('div');
-    mount.appendChild(holder);
-    const player = new YT.Player(holder, {
-      videoId,
-      playerVars: {
-        autoplay: 1, controls: 0, rel: 0, showinfo: 0, modestbranding: 1,
-        playsinline: 1, loop: 1, playlist: videoId, iv_load_policy: 3, disablekb: 1,
-      },
-      events: {
-        onReady: e => {
-          e.target.mute();
-          e.target.setPlaybackRate(1);
-          e.target.playVideo();
-          const iframe = e.target.getIframe();
-          cover(iframe);
-          window.addEventListener('resize', () => cover(iframe));
-        },
-        onStateChange: e => {
-          if (e.data === YT.PlayerState.ENDED) e.target.playVideo();
-          if (e.data === YT.PlayerState.PLAYING) setTimeout(() => e.target.getIframe().classList.add('playing'), 1200);
-        },
-      },
-    });
-  };
-}
-
 /* ---- Sidecar mobile nav (spec 01) ---- */
 function setupSidecar() {
   const open = () => document.body.classList.add('sidecar-open');
@@ -108,7 +58,6 @@ function setupImageFade() {
   });
 }
 
-setupHero();
 setupSidecar();
 setupGallery();
 setupVideo();

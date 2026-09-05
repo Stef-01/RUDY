@@ -11,13 +11,13 @@
 .header-nav { display: flex; align-items: center; }
 .header-nav a {
   font-family: var(--font-nav); font-size: var(--fs-nav); line-height: 13px; font-weight: 800;
-  letter-spacing: 1px; text-transform: uppercase; color: #fff; padding: 9.75px 13px;
+  letter-spacing: 1px; text-transform: uppercase; color: #000; padding: 9.75px 13px;
   transition: opacity 0.1s linear;
 }
 .header-nav a:hover { opacity: 0.6; }
 .header-nav a.nav-pill {
   font-family: var(--font-nav); font-weight: 800; letter-spacing: 1px;
-  background: #fff; color: #000; border-radius: 0; padding: 13px 19.5px; margin-left: 13px;
+  background: var(--dark); color: #fff; border-radius: 0; padding: 13px 19.5px; margin-left: 13px;
 }
 .nav-toggle { display: none; }
 @media (max-width: 767px) {
@@ -25,7 +25,7 @@
   .nav-toggle {
     display: block; background: none; border: 0; padding: 10px; cursor: pointer; margin-right: 6px;
   }
-  .nav-toggle span { display: block; width: 22px; height: 2px; background: #fff; margin: 5px 0; }
+  .nav-toggle span { display: block; width: 22px; height: 2px; background: #000; margin: 5px 0; }
 }
 
 /* Sidecar tray (mobile) */
@@ -47,19 +47,39 @@ body.sidecar-open #siteWrapper { transform: translateX(-260px); }
 .body-overlay { position: fixed; inset: 0; z-index: 1100; background: rgba(0,0,0,.15); opacity: 0; pointer-events: none; transition: opacity .3s ease; }
 body.sidecar-open .body-overlay { opacity: 1; pointer-events: auto; }
 
-/* ============ Hero (spec 02) ============ */
-.hero { position: relative; overflow: hidden; background: #111; height: 85.76vw; }
-.hero::before {
-  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 220px; z-index: 2;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.28) 38%, rgba(0,0,0,0.1) 68%, rgba(0,0,0,0) 100%);
-  pointer-events: none;
+/* ============ Hero — ghosted portrait, asymmetric ============ */
+.hero { position: relative; overflow: hidden; background: #fff; height: min(88vh, 840px); }
+.hero-portrait {
+  position: absolute; right: 3%; bottom: 0; height: 94%; width: auto;
+  opacity: 0.22; filter: grayscale(0.12);
+  pointer-events: none; user-select: none; will-change: transform, opacity;
 }
-@media (min-width: 768px) and (max-width: 1024px) { .hero { height: 176.95vw; } }
-@media (max-width: 767px) { .hero { height: 302.31vw; } }
-.hero .video-bg { position: absolute; inset: 0; }
-.hero .video-bg iframe { position: absolute; pointer-events: none; border: 0; opacity: 0; transition: opacity 1.2s ease; }
-.hero .video-bg iframe.playing { opacity: 1; }
-.hero .color-overlay { position: absolute; inset: 0; background: rgba(255,255,255,0); pointer-events: none; z-index: 1; }
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(90deg, #fff 0%, #fff 30%, rgba(255,255,255,0.6) 52%, rgba(255,255,255,0.06) 74%, rgba(255,255,255,0.45) 100%),
+    linear-gradient(to top, #fff 0%, rgba(255,255,255,0) 24%);
+}
+.hero-inner { position: relative; z-index: 2; height: 100%; display: flex; align-items: center; }
+.hero-copy { max-width: 620px; padding: var(--header-h) var(--block-pad) 0; }
+.hero-copy h1 {
+  font-size: clamp(42px, 4.8vw, 60px); line-height: 1.06; font-weight: 500;
+  letter-spacing: -0.01em; text-wrap: balance;
+}
+.hero-creds {
+  margin-top: 20px; font-family: var(--font-sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 2.5px; text-transform: uppercase; color: rgba(26, 26, 26, 0.55);
+  text-wrap: balance;
+}
+.hero-line { margin-top: 16px; font-size: 19px; line-height: 30px; max-width: 44ch; }
+.hero-cta { margin-top: 36px; }
+@media (max-width: 767px) {
+  .hero { height: auto; min-height: 74vh; display: flex; align-items: stretch; }
+  .hero-portrait { height: 54%; right: -28%; bottom: -5%; opacity: 0.15; }
+  .hero-copy { padding: calc(var(--header-h) + 46px) var(--block-pad) 56px; }
+  .hero-copy h1 { font-size: 44px; }
+  .hero-line { font-size: 18px; line-height: 28.8px; }
+}
 
 /* ============ Press rows (specs 03/06) ============ */
 .press-quote {
@@ -187,7 +207,7 @@ body.sidecar-open .body-overlay { opacity: 1; pointer-events: auto; }
 .footer-legal a { display: block; color: #000; font-size: 16px; line-height: 1.9; }
 
 /* Minimalist wordmark */
-.logo-text { display: flex; align-items: baseline; color: #fff; }
+.logo-text { display: flex; align-items: baseline; color: #000; }
 .logo-text .logo-min { font-family: var(--font-sans); font-size: 15px; font-weight: 600; letter-spacing: 4.5px; text-transform: uppercase; }
 .logo-text .logo-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); margin-left: 4px; align-self: center; margin-top: 2px; }
 
@@ -216,9 +236,9 @@ a:focus-visible, button:focus-visible {
 
 /* Nav + pill */
 .header-nav a { transition: opacity 0.18s ease; }
-.header-nav a:hover { opacity: 0.7; }
-.header-nav a.nav-pill { box-shadow: 0 1px 6px rgba(0,0,0,0.10); transition: box-shadow 0.25s ease; }
-.header-nav a.nav-pill:hover { opacity: 1; box-shadow: 0 3px 14px rgba(0,0,0,0.16); }
+.header-nav a:hover { opacity: 0.55; }
+.header-nav a.nav-pill { transition: background-color 0.2s ease, box-shadow 0.25s ease; }
+.header-nav a.nav-pill:hover { opacity: 1; background: #333; box-shadow: 0 6px 18px rgba(0,0,0,0.14); }
 
 /* Buttons: quiet lift */
 .btn { transition: background-color 0.2s ease, box-shadow 0.25s ease, opacity 0.1s linear; will-change: transform; }

@@ -37,27 +37,23 @@ function springGesture(selector, { hoverScale = 1.02, hoverY = -1, tapScale = 0.
 export function initAnimations() {
   if (reduced) return; // everything stays visible and static
 
-  /* ---- load sequence: header ---- */
+  /* ---- load sequence: header + hero (the page's one authored moment) ---- */
   animate('.header-logo', { opacity: [0, 1], y: [-6, 0] }, { duration: 0.6, ease: EASE, delay: 0.1 });
-  animate('.header-nav a', { opacity: [0, 1], y: [-8, 0] }, { duration: 0.5, ease: EASE, delay: stagger(0.06, { startDelay: 0.25 }) });
+  animate('.header-nav a', { opacity: [0, 1], y: [-8, 0] }, { duration: 0.5, ease: EASE, delay: stagger(0.06, { startDelay: 0.2 }) });
+  animate('.hero-copy > *', { opacity: [0, 1], y: [22, 0] }, { duration: 0.85, ease: EASE, delay: stagger(0.11, { startDelay: 0.3 }) });
+  const portrait0 = document.querySelector('.hero-portrait');
+  if (portrait0) animate(portrait0, { opacity: [0, 0.22], x: [30, 0] }, { duration: 1.7, ease: EASE, delay: 0.45 });
 
-  /* ---- scroll-linked: hero parallax + fade-off ---- */
+  /* ---- scroll-linked: hero portrait drift ---- */
   const hero = document.querySelector('.hero');
   if (hero) {
-    scroll(animate('.hero .video-bg', { y: [0, 140] }, { ease: 'linear' }),
+    scroll(animate('.hero-portrait', { y: [0, 70] }, { ease: 'linear' }),
       { target: hero, offset: ['start start', 'end start'] });
-    scroll(animate('.hero .video-bg', { opacity: [1, 0.45] }, { ease: 'linear' }),
-      { target: hero, offset: ['60% start', 'end start'] });
   }
 
-  /* ---- scroll-linked: portrait drift ---- */
-  const portrait = document.querySelector('.bio .portrait');
-  if (portrait) scroll(animate(portrait, { y: [26, -26] }, { ease: 'linear' }),
-    { target: portrait, offset: ['start end', 'end start'] });
 
   /* ---- section reveals (staggered, once) ---- */
   reveal('.press-1 .sq-block', { per: 0.1 });
-  reveal('.intro .sq-block', { per: 0.14, y: 20 });
   reveal('.bio .col-6:first-child .sq-block, .bio .btn-wrap', { per: 0.12, x: 0, y: 26 });
   reveal('.press-2 .sq-block', { per: 0.1 });
   reveal('.procedures h2', { y: 16 });

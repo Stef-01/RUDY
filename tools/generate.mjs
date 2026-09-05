@@ -15,29 +15,25 @@ const NAV = [
 const ext = h => h.startsWith('http') ? ' target="_blank" rel="noopener"' : '';
 const navLinks = NAV.map(([t, h], i) => `<a href="${h}"${ext(h)}${i === NAV.length - 1 ? ' class="nav-pill"' : ''}>${t}</a>`).join('\n        ');
 
-const quote = t => `<h3 style="text-align:center;white-space:pre-wrap;">${t}</h3>`;
-const qA = quote('&ldquo;Medicine that looks at the whole person, not just the presenting problem.&rdquo; &mdash; Dr Anubhav Saxena');
-const qB = quote('&ldquo;Thorough, unhurried skin checks &mdash; dermoscopy as standard.&rdquo;');
+const quote = t => `<p class="press-quote">${t}</p>`;
+const qA = quote('&ldquo;Medicine that looks at the whole person, not just the presenting problem.&rdquo;');
+const qB = quote('&ldquo;Thorough, unhurried skin checks, with dermoscopy as standard.&rdquo;');
 const qC = quote('&ldquo;ADHD care that starts with listening: assessment, clarity, and a plan.&rdquo;');
-const qD = quote('&ldquo;Evidence-based integrative medicine &mdash; conventional care and lifestyle, working together.&rdquo;');
+const qD = quote('&ldquo;Evidence-based integrative medicine: conventional care and lifestyle, working together.&rdquo;');
 
-const h1Block = `<h1 style="text-align:center;white-space:pre-wrap;"><strong>Dr. Anubhav Saxena</strong></h1>`;
-const tagline = `<p style="text-align:center;"><em>MBBS (Syd) &middot; FRACGP &middot; MPhil &middot; BSc (Adv) &middot; DCH &mdash; Director, Bay Health Clinic, Double Bay. Considered, evidence-based general practice for the whole person.</em></p>`;
-
-const bio = `<p style="white-space:pre-wrap;"><strong>Dr Anubhav Saxena</strong> is a Sydney general practitioner and the Director of <a href="https://bayhealth.com.au/" target="_blank" rel="noopener">Bay Health Clinic</a> in Double Bay. He completed his MBBS at the University of Sydney, alongside a Bachelor of Science (Advanced) and a Master of Philosophy in stroke research, and holds a Diploma in Child Health and Fellowship of the RACGP. An Honorary Associate Lecturer at Macquarie University, he has practised in communities across Sydney &mdash; Seven Hills, Double Bay, Hoxton Park and Hornsby &mdash; and holds special interests in skin cancer medicine, integrative medicine and ADHD care. Away from the clinic, he donates his time to supporting the helpless Parramatta Eels.</p>`;
+const bio = `<p style="white-space:pre-wrap;"><strong>Dr Anubhav Saxena</strong> is a Sydney general practitioner and the Director of <a href="https://bayhealth.com.au/" target="_blank" rel="noopener">Bay Health Clinic</a> in Double Bay. He completed his MBBS at the University of Sydney, alongside a Bachelor of Science (Advanced) and a Master of Philosophy in stroke research, and holds a Diploma in Child Health and Fellowship of the RACGP. An Honorary Associate Lecturer at Macquarie University, he has practised in communities across Sydney, from Seven Hills and Hoxton Park to Hornsby and Double Bay, and holds special interests in skin cancer medicine, integrative medicine and ADHD care. Away from the clinic, he donates his time to supporting the helpless Parramatta Eels.</p>`;
 
 const sigH2 = `<h2 style="text-align:center;white-space:pre-wrap;">Areas of Care</h2>`;
-const sigPara = `<p style="white-space:pre-wrap;"><strong>Bay Health Clinic&rsquo;s areas of care</strong> span comprehensive general practice for every age and stage: preventive health, chronic disease management, child and family medicine, and mental health support. Dr Saxena&rsquo;s special interests shape three dedicated streams &mdash; <a href="https://beecroftfp.com.au/" target="_blank" rel="noopener">skin cancer medicine</a> with full-body checks, dermoscopy and minor procedures; <a href="https://www.adhdme.au/" target="_blank" rel="noopener">ADHD assessment and ongoing care</a> for children and adults; and evidence-based <a href="https://bayhealth.com.au/" target="_blank" rel="noopener">integrative medicine</a> that pairs conventional treatment with nutrition, sleep and lifestyle. Appointments are long enough to ask questions, plans are made together, and follow-up is built in rather than bolted on.</p>`;
+const sigPara = `<p style="white-space:pre-wrap;"><strong>Bay Health Clinic&rsquo;s areas of care</strong> span comprehensive general practice for every age and stage: preventive health, chronic disease management, child and family medicine, and mental health support. Dr Saxena&rsquo;s special interests shape three dedicated streams: <a href="https://beecroftfp.com.au/" target="_blank" rel="noopener">skin cancer medicine</a> with full-body checks, dermoscopy and minor procedures; <a href="https://www.adhdme.au/" target="_blank" rel="noopener">ADHD assessment and ongoing care</a> for children and adults; and evidence-based <a href="https://bayhealth.com.au/" target="_blank" rel="noopener">integrative medicine</a> that pairs conventional treatment with nutrition, sleep and lifestyle. Appointments are long enough to ask questions, plans are made together, and follow-up is built in rather than bolted on.</p>`;
 
 const office = `<h2 style="text-align:center;white-space:pre-wrap;">Bay Health Clinic, Double Bay</h2>
 <p style="white-space:pre-wrap;"><strong>Welcome to Bay Health Clinic,</strong> the Double Bay practice directed by Dr Anubhav Saxena. Set in the heart of Sydney&rsquo;s eastern suburbs, the clinic pairs a calm, considered atmosphere with modern clinical facilities: a dedicated skin-check room with dermoscopy, treatment spaces for minor procedures, and consulting rooms designed for unhurried appointments. The team works alongside trusted allied health and specialist networks, so referrals stay seamless and care stays joined-up. Whether you&rsquo;re here for a same-day concern, a full skin check or a long-term plan, every visit is built around thorough, personal medicine.</p>`;
 
-const contact = `<h3 style="white-space:pre-wrap;">Contact</h3>
-<p style="white-space:pre-wrap;"><strong>Bay Health Clinic</strong><br>2 Cooper Street<br><em>Double Bay NSW 2028</em><br><em>Sydney, Eastern Suburbs</em><br>Australia</p>
+const contact = `<p style="white-space:pre-wrap;"><strong>Bay Health Clinic</strong><br>2 Cooper Street<br><em>Double Bay NSW 2028</em><br><em>Sydney, Eastern Suburbs</em><br>Australia</p>
 <p style="white-space:pre-wrap;">Phone: (02) 9327 7200<br>Fax: (02) 9326 1878<br>Email: <a href="mailto:info@bayhealth.com.au">info@bayhealth.com.au</a></p>
 `;
 const disclaimer = `<p style="white-space:pre-wrap;"><em>Email is not monitored for urgent medical issues. In an emergency, call 000.</em></p>`;
-const igHead = `<h2 style="text-align:center;white-space:pre-wrap;">Instagram | @beecroftclinic</h2>`;
+const igHead = `<h2 style="text-align:center;white-space:pre-wrap;">Instagram &middot; @beecroftclinic</h2>`;
 
 const ICONS = {
   ring: '<circle cx="32" cy="32" r="17" />',
@@ -109,9 +105,16 @@ const html = `<!doctype html>
       </div>
     </header>
 
-    <section class="hero" aria-label="Featured video">
-      <div class="video-bg" id="heroVideo" data-video-id="c_iQyAIzAgI"></div>
-      <div class="color-overlay"></div>
+    <section class="hero" aria-label="Introduction">
+      <img class="hero-portrait" src="/assets/55-anubhav-hero.png" alt="" aria-hidden="true">
+      <div class="hero-inner layout">
+        <div class="hero-copy">
+          <h1>Dr Anubhav<br>Saxena</h1>
+          <p class="hero-creds">MBBS (Syd) &middot; FRACGP &middot; MPhil &middot; BSc (Adv) &middot; DCH</p>
+          <p class="hero-line"><em>Considered, evidence-based general practice for the whole person, at Bay Health Clinic in Double Bay.</em></p>
+          <a class="btn btn-large hero-cta" href="#book">Book an appointment</a>
+        </div>
+      </div>
     </section>
 
     <main id="content">
@@ -128,15 +131,6 @@ const html = `<!doctype html>
 
         <div class="spacer"></div>
 
-        <section class="intro">
-          <div class="sq-block">${h1Block}</div>
-          <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6"><div class="sq-block tagline">${tagline}</div></div>
-            <div class="col-3"></div>
-          </div>
-        </section>
-
         <section class="bio">
           <div class="row">
             <div class="col-6">
@@ -150,7 +144,7 @@ const html = `<!doctype html>
 
         <section class="press-row press-2">
           <div class="row">
-            <div class="col-3"><div class="sq-block"><div class="mark"><span class="mark-top">Macquarie</span><span class="mark-main">University</span><span class="mark-sub">Honorary Associate Lecturer</span></div></div></div>
+            <div class="col-3"><div class="sq-block"><div class="mark"><span class="mark-top">Macquarie</span><span class="mark-main">University</span><span class="mark-sub" style="white-space:nowrap">Hon. Associate Lecturer</span></div></div></div>
             <div class="col-3"><div class="sq-block">${qC}</div></div>
             <div class="col-3"><div class="sq-block"><div class="mark"><span class="mark-main">MBBS &middot; MPhil</span><span class="mark-sub">BSc (Adv) &middot; DCH</span></div></div></div>
             <div class="col-3"><div class="sq-block">${qD}</div></div>
@@ -179,7 +173,7 @@ const html = `<!doctype html>
         <section class="office-video">
           <div class="sq-block">
             <div class="player">
-              <video src="/assets/office-video.mp4" poster="${A(25)}" preload="metadata" playsinline></video>
+              <video src="/assets/office-video.mp4" poster="${A(33)}" preload="metadata" playsinline></video>
               <button class="play-overlay" aria-label="Play video"><span class="disc"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></button>
             </div>
           </div>
@@ -202,6 +196,7 @@ const html = `<!doctype html>
         <div class="spacer"></div>
 
         <section class="contact">
+          <div class="sq-block"><h2 style="text-align:center;white-space:pre-wrap;">Contact</h2></div>
           <div class="row">
             <div class="col-6">
               <div class="sq-block">${contact}</div>
@@ -218,19 +213,19 @@ const html = `<!doctype html>
               <span class="book-name">Bay Health Clinic</span>
               <span class="book-sub">Double Bay &middot; General practice</span>
               <span class="book-line">2 Cooper Street &middot; (02) 9327 7200</span>
-              <a class="btn btn-book" href="${BOOK}" target="_blank" rel="noopener">Book &mdash; Double Bay</a>
+              <a class="btn btn-book" href="${BOOK}" target="_blank" rel="noopener">Book &middot; Double Bay</a>
             </div>
             <div class="book-card">
               <span class="book-name">ADHD Me</span>
               <span class="book-sub">Telehealth &middot; ADHD assessment &amp; care</span>
               <span class="book-line">adhdme.au &middot; phone consultations</span>
-              <a class="btn btn-book" href="${PROFILE}" target="_blank" rel="noopener">Book &mdash; ADHD Me</a>
+              <a class="btn btn-book" href="${PROFILE}" target="_blank" rel="noopener">Book &middot; ADHD Me</a>
             </div>
             <div class="book-card">
               <span class="book-name">Beecroft Family Practice</span>
               <span class="book-sub">Beecroft &middot; Family &amp; skin cancer clinic</span>
               <span class="book-line">(02) 9484 4788</span>
-              <a class="btn btn-book" href="https://beecroftfp.com.au/" target="_blank" rel="noopener">Book &mdash; Beecroft</a>
+              <a class="btn btn-book" href="https://beecroftfp.com.au/" target="_blank" rel="noopener">Book &middot; Beecroft</a>
             </div>
           </div></div>
         </section>
@@ -252,7 +247,8 @@ const html = `<!doctype html>
 
     <footer id="footer">
       <div class="footer-inner">
-        <p class="site-line"><span class="site-address">Bay Health Clinic, 2 Cooper Street, Double Bay NSW 2028, Australia</span><span class="site-phone">(02) 9327 7200</span><a class="site-email" href="mailto:info@bayhealth.com.au">info@bayhealth.com.au</a></p>
+        <p class="site-line"><span class="site-address">Bay Health Clinic &middot; 2&nbsp;Cooper&nbsp;Street, Double&nbsp;Bay&nbsp;NSW&nbsp;2028</span></p>
+        <p class="site-line site-line-2"><a class="site-phone" href="tel:+61293277200">(02)&nbsp;9327&nbsp;7200</a><span class="sep">&middot;</span><a class="site-email" href="mailto:info@bayhealth.com.au">info@bayhealth.com.au</a></p>
       </div>
     </footer>
     <div class="footer-legal">
