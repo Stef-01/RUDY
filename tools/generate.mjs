@@ -6,11 +6,10 @@ const A = i => '/assets/' + M[i].local;
 const BOOK = 'https://healthengine.com.au/medical-centre/nsw/double-bay/bay-health/s102998';
 const PROFILE = 'https://www.adhdme.au/network/anubhav-saxena';
 const NAV = [
-  ['Meet Dr. Saxena', PROFILE],
-  ['Services', '#areas'],
   ['Bay Health', 'https://bayhealth.com.au/'],
   ['ADHD Me', 'https://www.adhdme.au/'],
   ['Beecroft Family Practice', 'https://beecroftfp.com.au/'],
+  ['Services', '#areas'],
   ['Book Online', '#book'],
 ];
 const ext = h => h.startsWith('http') ? ' target="_blank" rel="noopener"' : '';
@@ -102,7 +101,7 @@ const html = `<!doctype html>
 
     <header id="header">
       <div class="header-inner">
-        <a class="header-logo logo-text" href="/"><span class="logo-top">Dr Anubhav</span><span class="logo-main">Saxena</span></a>
+        <a class="header-logo logo-text" href="/"><span class="logo-min">Dr Saxena</span><span class="logo-dot"></span></a>
         <nav class="header-nav" aria-label="Main">
         ${navLinks}
         </nav>

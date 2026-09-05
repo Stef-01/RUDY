@@ -166,10 +166,10 @@ body.sidecar-open .body-overlay { opacity: 1; pointer-events: auto; }
 .footer-legal { padding: 2px 0 4px; text-align: center; }
 .footer-legal a { display: block; color: #000; font-size: 16px; line-height: 1.9; }
 
-/* Text wordmark (replaces template logo PNG for the Saxena mockup) */
-.logo-text { display: flex; flex-direction: column; line-height: 1.1; color: #000; }
-.logo-text .logo-top { font-family: var(--font-sans); font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
-.logo-text .logo-main { font-family: var(--font-sans); font-size: 19px; font-weight: 400; letter-spacing: 6px; text-transform: uppercase; }
+/* Minimalist wordmark */
+.logo-text { display: flex; align-items: baseline; color: #000; }
+.logo-text .logo-min { font-family: var(--font-sans); font-size: 15px; font-weight: 600; letter-spacing: 4.5px; text-transform: uppercase; }
+.logo-text .logo-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); margin-left: 4px; align-self: center; margin-top: 2px; }
 
 /* ============ Micro-refinements pass ============ */
 html { scroll-behavior: smooth; }
