@@ -1,0 +1,40 @@
+/* Design tokens — measured from laradevganmd.com 2026-09-05 (tokens-1440.json / final-probe.json) */
+:root {
+  /* color */
+  --bg-page: #ffffff;
+  --bg-body: #1f1f1f;          /* html/body ground — shows through below siteWrapper */
+  --text-body: rgba(26, 26, 26, 0.7);
+  --text-heading: rgba(26, 26, 26, 0.9);
+  --text-h2: #4a4a4a;
+  --dark: #272727;             /* rgb(39,39,39) buttons */
+  --prefooter: #333333;        /* rgb(51,51,51) instagram band */
+  --footer: #1f1f1f;           /* rgb(31,31,31) */
+  --accent: #3d9991;           /* rgb(61,153,145) teal links */
+  --hairline: rgba(26, 26, 26, 0.15);
+  --white-70: rgba(255, 255, 255, 0.7);
+  --white-80: rgba(255, 255, 255, 0.8);
+  --scrim-12: rgba(0, 0, 0, 0.12);
+
+  /* type — original: adobe-garamond-pro / proxima-nova / Red Hat Display (Typekit faces
+     substituted by metric-similar Google faces when absent — RECONSTRUCT tier) */
+  --font-serif: adobe-garamond-pro, "EB Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: proxima-nova, Mulish, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-nav: "Red Hat Display", var(--font-sans);
+
+  --fs-body: 18px;   --lh-body: 28.8px;
+  --fs-h1: 32px;     --lh-h1: 38.4px;
+  --fs-h2: 22px;     --lh-h2: 26.4px;
+  --fs-h3: 16px;     --lh-h3: 19.2px;
+  --fs-nav: 13px;
+  --fs-addr: 14px;
+
+  /* layout */
+  --page-max: 1020px;
+  --layout-pad: 15px;
+  --block-pad: 17px;
+  --grid-gap: 20px;
+  --header-h: 79px;
+}
+@media (max-width: 767px) {
+  :root { --layout-pad: 3px; --header-h: 75px; }
+}

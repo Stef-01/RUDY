@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.DS_Store
+.vercel
+
+# Template-derived media excluded from the public repo (photos of the template
+# practice's patients/staff + their produced video). Local dev keeps them.
+public/assets/office-video.mp4
+public/assets/00-logo.png
+public/assets/0[1-9]-*.png
+public/assets/0[1-9]-*.jpg
+public/assets/1[0-9]-*.png
+public/assets/1[0-9]-*.jpg
+public/assets/2[0-3]-*.png
+public/assets/4[0-9]-*.jpg
+public/assets/5[0-2]-*.png
+public/assets/5[0-1]-*.jpg
