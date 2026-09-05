@@ -52,12 +52,13 @@ const CARE = [
   ['Preventive Health', 'Screening &middot; planning &middot; reviews', 'dots', 'https://bayhealth.com.au/'],
   ['Chronic Disease Care', 'Structured, measured follow-up', 'diamond', 'https://bayhealth.com.au/'],
 ];
-const careCards = CARE.map(([t, sub, ic, href], i) => {
-  const inner = `${icon(ic)}<span class="care-title">${t}</span><span class="care-sub">${sub}</span>`;
-  return href
-    ? `<a class="care-card care-p${i % 6}" href="${href}" target="_blank" rel="noopener">${inner}</a>`
-    : `<div class="care-card care-p${i % 6}">${inner}</div>`;
-}).join('\n          ');
+const careCards = CARE.map(([t, sub, ic, href], i) =>
+  `<a class="care-row" href="${href}" target="_blank" rel="noopener">
+    ${icon(ic)}
+    <span class="care-name">${t}</span>
+    <span class="care-tag">${sub}</span>
+    <svg class="care-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg>
+  </a>`).join('\n          ');
 const strip16 = M.slice(24, 40).map((e, i) => `<div class="slide"><img class="fx-img" src="${A(24 + i)}" alt="Clinic interior" loading="lazy"></div>`).join('\n            ');
 const play = `<span class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>`;
 const igTiles = Array.from({length: 12}, (_, i) =>
@@ -106,7 +107,6 @@ const html = `<!doctype html>
     </header>
 
     <section class="hero" aria-label="Introduction">
-      <img class="hero-portrait" src="/assets/55-anubhav-hero.png" alt="" aria-hidden="true">
       <div class="hero-inner layout">
         <div class="hero-copy">
           <h1>Dr Anubhav<br>Saxena</h1>
@@ -115,6 +115,7 @@ const html = `<!doctype html>
           <a class="btn btn-large hero-cta" href="#book">Book an appointment</a>
         </div>
       </div>
+      <img class="hero-portrait" src="/assets/55-anubhav-hero.png" alt="" aria-hidden="true">
     </section>
 
     <main id="content">
@@ -155,7 +156,7 @@ const html = `<!doctype html>
 
         <section class="procedures" id="areas">
           <div class="sq-block">${sigH2}</div>
-          <div class="sq-block"><div class="care-grid">
+          <div class="sq-block"><div class="care-index">
           ${careCards}
           </div></div>
           <div class="sq-block">${sigPara}</div>

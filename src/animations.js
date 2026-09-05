@@ -42,7 +42,7 @@ export function initAnimations() {
   animate('.header-nav a', { opacity: [0, 1], y: [-8, 0] }, { duration: 0.5, ease: EASE, delay: stagger(0.06, { startDelay: 0.2 }) });
   animate('.hero-copy > *', { opacity: [0, 1], y: [22, 0] }, { duration: 0.85, ease: EASE, delay: stagger(0.11, { startDelay: 0.3 }) });
   const portrait0 = document.querySelector('.hero-portrait');
-  if (portrait0) animate(portrait0, { opacity: [0, 0.22], x: [30, 0] }, { duration: 1.7, ease: EASE, delay: 0.45 });
+  if (portrait0) animate(portrait0, { opacity: [0, getComputedStyle(portrait0).opacity], x: [30, 0] }, { duration: 1.5, ease: EASE, delay: 0.4 });
 
   /* ---- scroll-linked: hero portrait drift ---- */
   const hero = document.querySelector('.hero');
@@ -57,7 +57,7 @@ export function initAnimations() {
   reveal('.bio .col-6:first-child .sq-block, .bio .btn-wrap', { per: 0.12, x: 0, y: 26 });
   reveal('.press-2 .sq-block', { per: 0.1 });
   reveal('.procedures h2', { y: 16 });
-  reveal('.care-card', { per: 0.08, y: 22, scale: 0.985, dur: 0.65, amount: 0.12, clear: true });
+  reveal('.care-row', { per: 0.07, y: 14, dur: 0.55, amount: 0.1, clear: true });
   reveal('.procedures > .sq-block:nth-of-type(3), .procedures .btn-wrap', { per: 0.12 });
   reveal('.office-intro .sq-block', { y: 22 });
   reveal('.office-video .player', { y: 0, scale: 0.985, dur: 0.8 });
