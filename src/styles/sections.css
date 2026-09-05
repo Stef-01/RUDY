@@ -235,3 +235,54 @@ a:focus-visible, button:focus-visible {
   html { scroll-behavior: auto; }
   .grid-18 img, .grid-ig .tile img, .btn, .social-row a, .header-nav a { transition: none; }
 }
+
+/* ============ Areas of Care cards ============ */
+.care-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--grid-gap); }
+.care-card {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 44px 22px 40px; min-height: 218px;
+  color: rgba(26, 26, 26, 0.88);
+  transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s ease;
+  will-change: transform;
+}
+.care-p0 { background: linear-gradient(135deg, #f6f5f3, #eae7e2); }
+.care-p1 { background: linear-gradient(135deg, #eef3f2, #dde8e6); }
+.care-p2 { background: linear-gradient(135deg, #f7f3ed, #ece5da); }
+.care-p3 { background: linear-gradient(135deg, #f0f1f3, #e2e4e8); }
+.care-p4 { background: linear-gradient(135deg, #f2f4f1, #e3e8e1); }
+.care-p5 { background: linear-gradient(135deg, #f6f1ef, #eadfdb); }
+a.care-card:hover { transform: translateY(-4px); box-shadow: 0 14px 34px rgba(26,26,26,0.10); }
+.care-icon { width: 44px; height: 44px; color: var(--accent); opacity: 0.75; margin-bottom: 18px; }
+.care-title { font-family: var(--font-serif); font-size: 21px; line-height: 1.25; margin-bottom: 9px; }
+.care-sub {
+  font-family: var(--font-sans); font-size: 10px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase; color: rgba(26,26,26,0.48);
+}
+@media (max-width: 767px) { .care-grid { grid-template-columns: 1fr; } .care-card { min-height: 178px; } }
+
+/* ============ Booking rail ============ */
+.booking { margin-top: 8px; }
+.booking-heading {
+  text-align: center; font-size: 22px; line-height: 26.4px; font-weight: 400;
+  color: var(--text-h2);
+}
+.book-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--grid-gap); }
+.book-card {
+  border: 1px solid rgba(26, 26, 26, 0.12); background: #fff;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: 34px 24px 28px;
+  transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s ease, border-color 0.3s ease;
+  will-change: transform;
+}
+.book-card:hover { transform: translateY(-4px); box-shadow: 0 16px 38px rgba(26,26,26,0.10); border-color: rgba(26,26,26,0.2); }
+.book-name { font-family: var(--font-serif); font-size: 22px; margin-bottom: 8px; color: var(--text-heading); }
+.book-sub {
+  font-family: var(--font-sans); font-size: 10px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase; color: rgba(26,26,26,0.48); margin-bottom: 10px;
+}
+.book-line { font-family: var(--font-serif); font-size: 15px; color: var(--text-body); margin-bottom: 22px; }
+.btn-book {
+  font-size: 13px; padding: 15px 10px; width: 100%; display: flex; justify-content: center;
+  margin-top: auto;
+}
+@media (max-width: 767px) { .book-grid { grid-template-columns: 1fr; } }

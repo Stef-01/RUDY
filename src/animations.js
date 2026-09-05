@@ -61,13 +61,15 @@ export function initAnimations() {
   reveal('.bio .col-6:first-child .sq-block, .bio .btn-wrap', { per: 0.12, x: 0, y: 26 });
   reveal('.press-2 .sq-block', { per: 0.1 });
   reveal('.procedures h2', { y: 16 });
-  reveal('.grid-18 img', { per: 0.035, y: 18, scale: 0.985, dur: 0.6, amount: 0.1, clear: true });
+  reveal('.care-card', { per: 0.08, y: 22, scale: 0.985, dur: 0.65, amount: 0.12, clear: true });
   reveal('.procedures > .sq-block:nth-of-type(3), .procedures .btn-wrap', { per: 0.12 });
   reveal('.office-intro .sq-block', { y: 22 });
   reveal('.office-video .player', { y: 0, scale: 0.985, dur: 0.8 });
   reveal('.strip .slide', { x: 28, y: 0, per: 0.06, dur: 0.6, clear: true });
   reveal('.contact .col-6:first-child .sq-block, .contact .btn-wrap', { per: 0.11 });
   reveal('.contact .map', { y: 28, dur: 0.8 });
+  reveal('.booking-heading', { y: 14 });
+  reveal('.book-card', { per: 0.1, y: 24, dur: 0.65, amount: 0.15, clear: true });
   reveal('.prefooter h2', { y: 16 });
   reveal('.grid-ig .tile', { per: 0.05, y: 16, scale: 0.95, dur: 0.55, amount: 0.08, clear: true });
   reveal('.social-row a', { per: 0.06, y: 10, dur: 0.45, clear: true });
