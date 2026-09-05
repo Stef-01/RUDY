@@ -94,6 +94,7 @@ const html = `<!doctype html>
     </ul>
   </nav>
   <div class="body-overlay"></div>
+  <div class="scroll-progress" aria-hidden="true"></div>
   <div id="siteWrapper">
 
     <header id="header">
@@ -218,8 +219,8 @@ const html = `<!doctype html>
             </div>
             <div class="book-card">
               <span class="book-name">ADHD Me</span>
-              <span class="book-sub">Telehealth &middot; ADHD assessment &amp; care</span>
-              <span class="book-line">adhdme.au &middot; phone consultations</span>
+              <span class="book-sub">ADHD assessment &amp; care</span>
+              <span class="book-line">adhdme.au &middot; Beecroft &amp; Double Bay</span>
               <a class="btn btn-book" href="${PROFILE}" target="_blank" rel="noopener">Book &middot; ADHD Me</a>
             </div>
             <div class="book-card">

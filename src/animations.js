@@ -42,14 +42,21 @@ export function initAnimations() {
   animate('.header-nav a', { opacity: [0, 1], y: [-8, 0] }, { duration: 0.5, ease: EASE, delay: stagger(0.06, { startDelay: 0.2 }) });
   animate('.hero-copy > *', { opacity: [0, 1], y: [22, 0] }, { duration: 0.85, ease: EASE, delay: stagger(0.11, { startDelay: 0.3 }) });
   const portrait0 = document.querySelector('.hero-portrait');
-  if (portrait0) animate(portrait0, { opacity: [0, getComputedStyle(portrait0).opacity], x: [30, 0] }, { duration: 1.5, ease: EASE, delay: 0.4 });
+  if (portrait0) animate(portrait0, { opacity: [0, getComputedStyle(portrait0).opacity], x: [30, 0], scale: [1.03, 1] }, { duration: 1.5, ease: EASE, delay: 0.4 });
 
-  /* ---- scroll-linked: hero portrait drift ---- */
+  /* ---- reading progress (teal hairline, top) ---- */
+  const bar = document.querySelector('.scroll-progress');
+  if (bar) scroll(animate(bar, { scaleX: [0, 1] }, { ease: 'linear' }));
+
+  /* ---- scroll-linked: hero portrait drift + bio portrait counter-drift ---- */
   const hero = document.querySelector('.hero');
   if (hero) {
     scroll(animate('.hero-portrait', { y: [0, 70] }, { ease: 'linear' }),
       { target: hero, offset: ['start start', 'end start'] });
   }
+  const bioP = document.querySelector('.bio .portrait');
+  if (bioP) scroll(animate(bioP, { y: [24, -24] }, { ease: 'linear' }),
+    { target: bioP, offset: ['start end', 'end start'] });
 
 
   /* ---- section reveals (staggered, once) ---- */
@@ -75,7 +82,11 @@ export function initAnimations() {
   springGesture('.btn');
   springGesture('.nav-pill', { hoverScale: 1.045, hoverY: 0, tapScale: 0.96 });
   springGesture('.gal-arrow', { hoverScale: 1.08, hoverY: 0, tapScale: 0.92 });
-  springGesture('.play-overlay .disc', { hoverScale: 1.07, hoverY: 0, tapScale: 0.94 });
+  springGesture('.book-card', { hoverScale: 1.004, hoverY: -6, tapScale: 0.998 });
+
+  /* ---- perpetual micro-loop: the play disc breathes ---- */
+  const disc = document.querySelector('.play-overlay .disc');
+  if (disc) animate(disc, { scale: [1, 1.07, 1] }, { duration: 2.6, repeat: Infinity, ease: 'easeInOut' });
 }
 
 /* Spring-driven strip slider (replaces CSS transition) */
