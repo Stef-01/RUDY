@@ -46,7 +46,10 @@ function setupHero() {
           cover(iframe);
           window.addEventListener('resize', () => cover(iframe));
         },
-        onStateChange: e => { if (e.data === YT.PlayerState.ENDED) e.target.playVideo(); },
+        onStateChange: e => {
+          if (e.data === YT.PlayerState.ENDED) e.target.playVideo();
+          if (e.data === YT.PlayerState.PLAYING) setTimeout(() => e.target.getIframe().classList.add('playing'), 1200);
+        },
       },
     });
   };

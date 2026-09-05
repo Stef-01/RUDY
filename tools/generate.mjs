@@ -24,7 +24,7 @@ const qD = quote('&ldquo;Evidence-based integrative medicine &mdash; conventiona
 const h1Block = `<h1 style="text-align:center;white-space:pre-wrap;"><strong>Dr. Anubhav Saxena</strong></h1>`;
 const tagline = `<p style="text-align:center;"><em>MBBS (Syd) &middot; FRACGP &middot; MPhil &middot; BSc (Adv) &middot; DCH &mdash; Director, Bay Health Clinic, Double Bay. Considered, evidence-based general practice for the whole person.</em></p>`;
 
-const bio = `<p style="white-space:pre-wrap;"><strong>Dr Anubhav Saxena</strong> is a Sydney general practitioner and the Director of <a href="https://bayhealth.com.au/" target="_blank" rel="noopener">Bay Health Clinic</a> in Double Bay. He completed his MBBS at the University of Sydney, alongside a Bachelor of Science (Advanced) and a Master of Philosophy in stroke research, and holds a Diploma in Child Health and Fellowship of the RACGP. An Honorary Associate Lecturer at Macquarie University, he has practised in communities across Sydney &mdash; Seven Hills, Double Bay, Hoxton Park and Hornsby &mdash; and holds special interests in skin cancer medicine, integrative medicine and ADHD care. Away from the clinic, he donates his time to supporting the helpless Parramatta Eels. <strong>For an extended bio, click below.</strong></p>`;
+const bio = `<p style="white-space:pre-wrap;"><strong>Dr Anubhav Saxena</strong> is a Sydney general practitioner and the Director of <a href="https://bayhealth.com.au/" target="_blank" rel="noopener">Bay Health Clinic</a> in Double Bay. He completed his MBBS at the University of Sydney, alongside a Bachelor of Science (Advanced) and a Master of Philosophy in stroke research, and holds a Diploma in Child Health and Fellowship of the RACGP. An Honorary Associate Lecturer at Macquarie University, he has practised in communities across Sydney &mdash; Seven Hills, Double Bay, Hoxton Park and Hornsby &mdash; and holds special interests in skin cancer medicine, integrative medicine and ADHD care. Away from the clinic, he donates his time to supporting the helpless Parramatta Eels.</p>`;
 
 const sigH2 = `<h2 style="text-align:center;white-space:pre-wrap;">Areas of Care</h2>`;
 const sigPara = `<p style="white-space:pre-wrap;"><strong>Bay Health Clinic&rsquo;s areas of care</strong> span comprehensive general practice for every age and stage: preventive health, chronic disease management, child and family medicine, and mental health support. Dr Saxena&rsquo;s special interests shape three dedicated streams &mdash; <a href="https://beecroftfp.com.au/" target="_blank" rel="noopener">skin cancer medicine</a> with full-body checks, dermoscopy and minor procedures; <a href="https://www.adhdme.au/" target="_blank" rel="noopener">ADHD assessment and ongoing care</a> for children and adults; and evidence-based <a href="https://bayhealth.com.au/" target="_blank" rel="noopener">integrative medicine</a> that pairs conventional treatment with nutrition, sleep and lifestyle. Appointments are long enough to ask questions, plans are made together, and follow-up is built in rather than bolted on.</p>`;
@@ -52,9 +52,9 @@ const CARE = [
   ['Skin Cancer Medicine', 'Full-body checks &middot; dermoscopy', 'leaf', 'https://beecroftfp.com.au/'],
   ['ADHD Care', 'Assessment to follow-up', 'plus', 'https://www.adhdme.au/'],
   ['Integrative Medicine', 'Conventional care + lifestyle', 'ring', 'https://bayhealth.com.au/'],
-  ['Child &amp; Family Health', 'DCH &middot; every age and stage', 'arcs', null],
-  ['Preventive Health', 'Screening &middot; planning &middot; reviews', 'dots', null],
-  ['Chronic Disease Care', 'Structured, measured follow-up', 'diamond', null],
+  ['Child &amp; Family Health', 'DCH &middot; every age and stage', 'arcs', 'https://bayhealth.com.au/'],
+  ['Preventive Health', 'Screening &middot; planning &middot; reviews', 'dots', 'https://bayhealth.com.au/'],
+  ['Chronic Disease Care', 'Structured, measured follow-up', 'diamond', 'https://bayhealth.com.au/'],
 ];
 const careCards = CARE.map(([t, sub, ic, href], i) => {
   const inner = `${icon(ic)}<span class="care-title">${t}</span><span class="care-sub">${sub}</span>`;
@@ -141,7 +141,6 @@ const html = `<!doctype html>
           <div class="row">
             <div class="col-6">
               <div class="sq-block">${bio}</div>
-              <div class="btn-wrap"><a class="btn btn-large" href="${PROFILE}" target="_blank" rel="noopener">Meet Dr. Saxena</a></div>
             </div>
             <div class="col-6"><div class="sq-block"><img class="fx-img portrait" src="/assets/54-anubhav-saxena.png" alt="Dr Anubhav Saxena"></div></div>
           </div>
