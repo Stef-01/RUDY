@@ -36,7 +36,7 @@ function springGesture(selector, { hoverScale = 1.02, hoverY = -1, tapScale = 0.
 
 function initHeroLogic() {
   const heroCopy = document.querySelector('.hero-copy');
-  const heroBlur = document.querySelector('.hero-blur');
+  const heroScrim = document.querySelector('.hero-scrim');
   if (!heroCopy) return;
 
   // Set initial state
@@ -47,7 +47,7 @@ function initHeroLogic() {
   const showHero = () => {
     if (isVisible) return;
     isVisible = true;
-    if (heroBlur) animate(heroBlur, { opacity: 1 }, { duration: 1.2, ease: EASE });
+    if (heroScrim) animate(heroScrim, { opacity: 1 }, { duration: 1.2, ease: EASE });
     animate(heroCopy, { opacity: 1, y: 0 }, { duration: 1.2, ease: EASE });
     // Stagger the children elements nicely
     animate(Array.from(heroCopy.children), 
@@ -59,7 +59,7 @@ function initHeroLogic() {
   const hideHero = () => {
     if (!isVisible) return;
     isVisible = false;
-    if (heroBlur) animate(heroBlur, { opacity: 0 }, { duration: 0.6, ease: EASE });
+    if (heroScrim) animate(heroScrim, { opacity: 0 }, { duration: 0.6, ease: EASE });
     animate(heroCopy, { opacity: 0, y: 20 }, { duration: 0.6, ease: EASE });
   };
 
