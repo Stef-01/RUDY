@@ -8,17 +8,17 @@ const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const clearTransforms = els => els.forEach(el => { el.style.transform = ''; });
 
-function reveal(selector, { y = 30, x = 0, scale = 1, per = 0.1, dur = 0.8, amount = 0.2, clear = false } = {}) {
+function reveal(selector, { y = 40, x = 0, scale = 0.95, per = 0.1, dur = 0.9, amount = 0.2, clear = false } = {}) {
   const els = Array.from(document.querySelectorAll(selector));
   if (!els.length) return;
   els.forEach(el => {
     el.style.opacity = '0';
-    el.style.transform = `translate(${x}px, ${y}px)` + (scale !== 1 ? ` scale(${scale})` : '');
+    // Let Framer Motion handle initial transform via the array syntax
   });
   const io = inView(els[0].closest('section, footer, .prefooter') || els[0], () => {
     const controls = animate(els,
-      { opacity: 1, y: 0, x: 0, ...(scale !== 1 ? { scale: 1 } : {}) },
-      { duration: dur, ease: EASE, delay: stagger(per) });
+      { opacity: [0, 1], y: [y, 0], x: [x, 0], scale: [scale, 1] },
+      { duration: dur, ease: [0.16, 1, 0.3, 1], delay: stagger(per) });
     controls.finished?.then(() => { if (clear) clearTransforms(els); });
     io();
   }, { amount });
@@ -51,8 +51,8 @@ function initHeroLogic() {
     animate(heroCopy, { opacity: 1, y: 0 }, { duration: 1.2, ease: EASE });
     // Stagger the children elements nicely
     animate(Array.from(heroCopy.children), 
-      { opacity: [0, 1], y: [15, 0] }, 
-      { duration: 0.8, ease: EASE, delay: stagger(0.15) }
+      { opacity: [0, 1], y: [20, 0], scale: [0.95, 1] }, 
+      { duration: 1, ease: [0.16, 1, 0.3, 1], delay: stagger(0.15) }
     );
   };
 
@@ -105,20 +105,20 @@ export function initAnimations() {
 
   /* ---- section reveals (staggered, once) ---- */
   // Press rows
-  reveal('.press-1 .sq-block', { per: 0.15, y: 30 });
+  reveal('.press-1 .sq-block', { per: 0.15, y: 30, scale: 0.95 });
   
   // Bio
-  reveal('.bio .col-6:first-child .sq-block, .bio .btn-wrap', { per: 0.15, y: 30 });
+  reveal('.bio .col-6:first-child .sq-block, .bio .btn-wrap', { per: 0.15, y: 40, scale: 0.98 });
   
   // Filmography Header
-  reveal('.procedures h2', { y: 20 });
+  reveal('.procedures h2', { y: 20, scale: 0.95 });
   
-  // Filmography Rows (Beautiful Stagger)
-  reveal('.care-row', { per: 0.15, y: 40, dur: 0.8, amount: 0.1, clear: true });
+  // Filmography Rows (Beautiful Stagger sliding in from the left)
+  reveal('.care-row', { per: 0.12, x: -30, y: 0, scale: 1, dur: 0.9, amount: 0.1, clear: true });
   
   // Contact
-  reveal('.contact .col-6:first-child .sq-block, .contact .btn-wrap', { per: 0.15, y: 30 });
-  reveal('.contact .contact-quote', { y: 30, scale: 0.95, dur: 1 });
+  reveal('.contact .col-6:first-child .sq-block, .contact .btn-wrap', { per: 0.15, y: 30, scale: 0.98 });
+  reveal('.contact .contact-quote', { y: 20, scale: 0.9, dur: 1.2 });
   
   // Footer
   reveal('.prefooter h2', { y: 20 });
