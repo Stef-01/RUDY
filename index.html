@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dr Anubhav Saxena | Bay Health Clinic, Double Bay</title>
+  <title>Rudra Gosalia | Filmmaker, Writer & Director</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,31 +11,137 @@
   <link rel="stylesheet" href="/src/styles/tokens.css">
   <link rel="stylesheet" href="/src/styles/base.css">
   <link rel="stylesheet" href="/src/styles/sections.css">
+  <style>
+    /* Custom Styles for Rudra Gosalia */
+    body, html {
+      margin: 0;
+      padding: 0;
+      background-color: #0a0a0a !important;
+      color: #fff !important; 
+    }
+    
+    .video-container {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100vh;
+      z-index: 0; overflow: hidden; background: #000;
+    }
+    .video-container iframe {
+      width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh;
+      position: absolute; bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none; opacity: 0.7;
+    }
+    .video-fade {
+      position: absolute; bottom: 0; left: 0; width: 100%; height: 250px;
+      background: linear-gradient(to bottom, rgba(10,10,10,0) 0%, rgba(10,10,10,1) 100%);
+      z-index: 1; pointer-events: none;
+    }
+
+    #siteWrapper { background: transparent !important; position: relative; z-index: 2; }
+    header, .header-inner { background: rgba(10,10,10,0.8) !important; color: #fff !important; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .header-logo, .header-nav a { color: #fff !important; }
+    .header-nav a:hover { color: #f39c12 !important; }
+    
+    .hero { background: transparent !important; padding-top: 15vh; height: 100vh; display: flex; align-items: center; text-shadow: 0 4px 15px rgba(0,0,0,0.9); }
+    .hero::after { display: none !important; }
+    
+    .hero-copy { margin-bottom: 10vh; opacity: 0; /* JS will handle opacity */ }
+    .hero h1 { color: #fff !important; font-size: clamp(3rem, 6vw, 6rem); text-transform: uppercase; letter-spacing: 4px; line-height: 1.1; margin-bottom: 20px;}
+    .hero-line { color: #eee !important; font-size: 1.25rem; font-weight: 300; max-width: 600px; }
+    .hero-creds { color: #f39c12 !important; font-size: 0.9rem; letter-spacing: 3px; }
+    .hero-portrait { display: none; }
+    
+    .bio { margin-top: 50px; background: rgba(255,255,255,0.03) !important; padding: 60px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); }
+    .bio p { color: #ddd !important; font-size: 1.2rem; line-height: 1.8; margin-bottom: 20px;}
+    .bio strong { color: #fff !important; }
+    
+    .fx-img.portrait {
+      border-radius: 15px; box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+      width: 100%; height: auto; object-fit: cover;
+      filter: grayscale(10%) contrast(110%);
+    }
+
+    .sq-block h2, .sq-block h3 { color: #f39c12 !important; letter-spacing: 2px; text-transform: uppercase; font-size: 1.8rem; margin-bottom: 30px;}
+    .sq-block p { color: #eee !important; }
+    .press-quote { color: #fff !important; font-style: italic; font-size: 1.2rem; opacity: 0.8;}
+    
+    .procedures { background: transparent !important; margin-top: 80px; padding: 0 20px; }
+    .care-index { display: flex; flex-direction: column; gap: 0; }
+    
+    .care-row { 
+      background: transparent !important; border: none !important;
+      border-bottom: 1px solid rgba(255,255,255,0.1) !important; border-radius: 0 !important;
+      padding: 40px 20px !important; color: #fff !important; 
+      display: flex; align-items: center; position: relative; overflow: hidden; text-decoration: none !important;
+    }
+    .care-row:first-child { border-top: 1px solid rgba(255,255,255,0.1) !important; }
+    
+    .care-row::before {
+      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(243,156,18,0.1), transparent);
+      transition: left 0.6s ease; z-index: 0; pointer-events: none;
+    }
+    .care-row:hover::before { left: 100%; }
+    
+    .care-name { 
+      color: #fff !important; font-size: 1.8rem !important; font-family: var(--font-serif);
+      margin-left: 0; position: relative; z-index: 1; transition: color 0.3s ease;
+    }
+    .care-row:hover .care-name { color: #f39c12 !important; }
+    
+    .care-tag { 
+      margin-left: auto; color: #888 !important; font-family: var(--font-sans);
+      font-size: 0.85rem !important; letter-spacing: 2px; text-transform: uppercase;
+      position: relative; z-index: 1; transition: color 0.3s ease;
+    }
+    .care-row:hover .care-tag { color: #ccc !important; }
+    
+    .btn { background: #f39c12 !important; color: #000 !important; border: none !important; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; padding: 15px 35px; border-radius: 30px; display: inline-block;}
+    .contact { background: rgba(255,255,255,0.03) !important; padding: 80px 60px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); margin-top: 80px; }
+    
+    .contact-quote {
+      font-size: 2.2rem; font-style: italic; color: #fff !important;
+      opacity: 0.9; line-height: 1.5 !important; font-family: var(--font-serif); text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+    
+    #footer, .prefooter { background: #050505 !important; color: #666 !important; border-top: 1px solid rgba(255,255,255,0.05); padding: 40px 0; margin-top: 100px;}
+    .footer-legal a { color: #666 !important; }
+    .mark-main { color: #f39c12 !important; } .mark-top, .mark-sub { color: #888 !important; }
+    
+    @media (max-width: 767px) {
+      .care-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .care-tag { margin-left: 0; }
+      .hero h1 { font-size: 3rem !important; }
+    }
+  </style>
 </head>
 <body>
+  <!-- Cinematic Video Background -->
+  <div class="video-container">
+    <iframe src="https://www.youtube.com/embed/uSOj6umKz6E?autoplay=1&mute=1&loop=1&playlist=uSOj6umKz6E&controls=0&showinfo=0&rel=0&modestbranding=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <div class="video-fade"></div>
+  </div>
+
   <nav id="sidecarNav" aria-label="Mobile">
     <button class="sidecar-close" aria-label="Close menu">&#10005;</button>
     <ul class="sidecar-links">
-      <li><a href="https://bayhealth.com.au/" target="_blank" rel="noopener">Bay Health</a></li>
-      <li><a href="https://www.adhdme.au/" target="_blank" rel="noopener">ADHD Me</a></li>
-      <li><a href="https://beecroftfp.com.au/" target="_blank" rel="noopener">Beecroft Family Practice</a></li>
-      <li><a href="#areas">Services</a></li>
-      <li><a href="#book" class="nav-pill">Book Online</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact" class="nav-pill">Contact</a></li>
     </ul>
   </nav>
+  
   <div class="body-overlay"></div>
-  <div class="scroll-progress" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true" style="background-color: #f39c12;"></div>
+  
   <div id="siteWrapper">
-
     <header id="header">
       <div class="header-inner">
-        <a class="header-logo logo-text" href="/"><span class="logo-min">Dr Saxena</span><span class="logo-dot"></span></a>
+        <a class="header-logo logo-text" href="/"><span class="logo-min">Rudra Gosalia</span><span class="logo-dot" style="color: #f39c12;">.</span></a>
         <nav class="header-nav" aria-label="Main">
-        <a href="https://bayhealth.com.au/" target="_blank" rel="noopener">Bay Health</a>
-        <a href="https://www.adhdme.au/" target="_blank" rel="noopener">ADHD Me</a>
-        <a href="https://beecroftfp.com.au/" target="_blank" rel="noopener">Beecroft Family Practice</a>
-        <a href="#areas">Services</a>
-        <a href="#book" class="nav-pill">Book Online</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact" class="nav-pill">Contact</a>
         </nav>
         <button class="nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
       </div>
@@ -44,221 +150,94 @@
     <section class="hero" aria-label="Introduction">
       <div class="hero-inner layout">
         <div class="hero-copy">
-          <h1>Dr Anubhav<br>Saxena</h1>
-          <p class="hero-creds">MBBS (Syd) &middot; FRACGP &middot; MPhil &middot; BSc (Adv) &middot; DCH</p>
-          <p class="hero-line"><em>Considered, evidence-based general practice for the whole person, at Bay Health Clinic in Double Bay.</em></p>
-          <a class="btn btn-large hero-cta" href="#book">Book an appointment</a>
+          <h1>Rudra<br>Gosalia</h1>
+          <p class="hero-creds">Filmmaker &middot; Writer &middot; Director</p>
+          <p class="hero-line"><em>Crafting engaging narratives and cinematic experiences, emerging from Australia's flourishing film industry.</em></p>
+          <a class="btn hero-cta" href="#projects">View Filmography</a>
         </div>
       </div>
-      <img class="hero-portrait" src="/assets/55-anubhav-hero.png" alt="" aria-hidden="true">
     </section>
 
     <main id="content">
       <div class="layout">
 
-        <section class="press-row press-1">
+        <section class="press-row press-1" style="margin-top: 50px;">
           <div class="row">
-            <div class="col-3"><div class="sq-block"><div class="mark"><span class="mark-top">The University of</span><span class="mark-main">Sydney</span></div></div></div>
-            <div class="col-3"><div class="sq-block"><p class="press-quote">&ldquo;Medicine that looks at the whole person, not just the presenting problem.&rdquo;</p></div></div>
-            <div class="col-3"><div class="sq-block"><div class="mark"><span class="mark-main">RACGP</span><span class="mark-sub">Fellowship</span></div></div></div>
-            <div class="col-3"><div class="sq-block"><p class="press-quote">&ldquo;Thorough, unhurried skin checks, with dermoscopy as standard.&rdquo;</p></div></div>
+            <div class="col-3"><div class="sq-block"><div class="mark"><span class="mark-top">Bachelor of</span><span class="mark-main">Film & TV</span></div></div></div>
+            <div class="col-3"><div class="sq-block"><p class="press-quote">&ldquo;Bringing unique visions to life through a lens.&rdquo;</p></div></div>
+            <div class="col-3"><div class="sq-block"><div class="mark"><span class="mark-main">Bond Univ.</span><span class="mark-sub">Alumni</span></div></div></div>
+            <div class="col-3"><div class="sq-block"><p class="press-quote">&ldquo;Part of a new wave of local productions.&rdquo;</p></div></div>
           </div>
         </section>
 
-        <div class="spacer"></div>
-
-        <section class="bio">
+        <section class="bio" id="about">
           <div class="row">
             <div class="col-6">
-              <div class="sq-block"><p style="white-space:pre-wrap;"><strong>Dr Anubhav Saxena</strong> is a Sydney general practitioner and the Director of <a href="https://bayhealth.com.au/" target="_blank" rel="noopener">Bay Health Clinic</a> in Double Bay. He completed his MBBS at the University of Sydney, alongside a Bachelor of Science (Advanced) and a Master of Philosophy in stroke research, and holds a Diploma in Child Health and Fellowship of the RACGP. An Honorary Associate Lecturer at Macquarie University, he has practised in communities across Sydney, from Seven Hills and Hoxton Park to Hornsby and Double Bay, and holds special interests in skin cancer medicine, integrative medicine and ADHD care. Away from the clinic, he donates his time to supporting the helpless Parramatta Eels.</p></div>
-            </div>
-            <div class="col-6"><div class="sq-block"><img class="fx-img portrait" src="/assets/54-anubhav-saxena.png" alt="Dr Anubhav Saxena"></div></div>
-          </div>
-        </section>
-
-        <div class="spacer"></div>
-
-        <section class="press-row press-2">
-          <div class="row">
-            <div class="col-3"><div class="sq-block"><div class="mark"><span class="mark-top">Macquarie</span><span class="mark-main">University</span><span class="mark-sub" style="white-space:nowrap">Hon. Associate Lecturer</span></div></div></div>
-            <div class="col-3"><div class="sq-block"><p class="press-quote">&ldquo;ADHD care that starts with listening: assessment, clarity, and a plan.&rdquo;</p></div></div>
-            <div class="col-3"><div class="sq-block"><div class="mark"><span class="mark-main">MBBS &middot; MPhil</span><span class="mark-sub">BSc (Adv) &middot; DCH</span></div></div></div>
-            <div class="col-3"><div class="sq-block"><p class="press-quote">&ldquo;Evidence-based integrative medicine: conventional care and lifestyle, working together.&rdquo;</p></div></div>
-          </div>
-        </section>
-
-        <div class="sq-block"><hr></div>
-
-        <section class="procedures" id="areas">
-          <div class="sq-block"><h2 style="text-align:center;white-space:pre-wrap;">Areas of Care</h2></div>
-          <div class="sq-block"><div class="care-index">
-          <a class="care-row" href="https://beecroftfp.com.au/" target="_blank" rel="noopener">
-    <svg class="care-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M32 13 C20 25 20 39 32 51 C44 39 44 25 32 13 Z" /></svg>
-    <span class="care-name">Skin Cancer Medicine</span>
-    <span class="care-tag">Full-body checks &middot; dermoscopy</span>
-    <svg class="care-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg>
-  </a>
-          <a class="care-row" href="https://www.adhdme.au/" target="_blank" rel="noopener">
-    <svg class="care-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M32 15 V49 M15 32 H49" /></svg>
-    <span class="care-name">ADHD Care</span>
-    <span class="care-tag">Assessment to follow-up</span>
-    <svg class="care-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg>
-  </a>
-          <a class="care-row" href="https://bayhealth.com.au/" target="_blank" rel="noopener">
-    <svg class="care-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="32" cy="32" r="17" /></svg>
-    <span class="care-name">Integrative Medicine</span>
-    <span class="care-tag">Conventional care + lifestyle</span>
-    <svg class="care-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg>
-  </a>
-          <a class="care-row" href="https://bayhealth.com.au/" target="_blank" rel="noopener">
-    <svg class="care-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 38 Q32 15 47 38" /><path d="M21 44 Q32 27 43 44" opacity="0.45" /></svg>
-    <span class="care-name">Child &amp; Family Health</span>
-    <span class="care-tag">DCH &middot; every age and stage</span>
-    <svg class="care-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg>
-  </a>
-          <a class="care-row" href="https://bayhealth.com.au/" target="_blank" rel="noopener">
-    <svg class="care-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><g><circle cx="21" cy="21" r="1.8" fill="currentColor" stroke="none"/><circle cx="32" cy="21" r="1.8" fill="currentColor" stroke="none"/><circle cx="43" cy="21" r="1.8" fill="currentColor" stroke="none"/><circle cx="21" cy="32" r="1.8" fill="currentColor" stroke="none"/><circle cx="32" cy="32" r="1.8" fill="currentColor" stroke="none"/><circle cx="43" cy="32" r="1.8" fill="currentColor" stroke="none"/><circle cx="21" cy="43" r="1.8" fill="currentColor" stroke="none"/><circle cx="32" cy="43" r="1.8" fill="currentColor" stroke="none"/><circle cx="43" cy="43" r="1.8" fill="currentColor" stroke="none"/></g></svg>
-    <span class="care-name">Preventive Health</span>
-    <span class="care-tag">Screening &middot; planning &middot; reviews</span>
-    <svg class="care-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg>
-  </a>
-          <a class="care-row" href="https://bayhealth.com.au/" target="_blank" rel="noopener">
-    <svg class="care-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="19" y="19" width="26" height="26" transform="rotate(45 32 32)" /></svg>
-    <span class="care-name">Chronic Disease Care</span>
-    <span class="care-tag">Structured, measured follow-up</span>
-    <svg class="care-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg>
-  </a>
-          </div></div>
-          <div class="sq-block"><p style="white-space:pre-wrap;"><strong>Bay Health Clinic&rsquo;s areas of care</strong> span comprehensive general practice for every age and stage: preventive health, chronic disease management, child and family medicine, and mental health support. Dr Saxena&rsquo;s special interests shape three dedicated streams: <a href="https://beecroftfp.com.au/" target="_blank" rel="noopener">skin cancer medicine</a> with full-body checks, dermoscopy and minor procedures; <a href="https://www.adhdme.au/" target="_blank" rel="noopener">ADHD assessment and ongoing care</a> for children and adults; and evidence-based <a href="https://bayhealth.com.au/" target="_blank" rel="noopener">integrative medicine</a> that pairs conventional treatment with nutrition, sleep and lifestyle. Appointments are long enough to ask questions, plans are made together, and follow-up is built in rather than bolted on.</p></div>
-          <div class="btn-wrap"><a class="btn btn-large" href="https://bayhealth.com.au/" target="_blank" rel="noopener">View All Services</a></div>
-        </section>
-
-        <div class="sq-block"><hr></div>
-
-        <section class="office-intro">
-          <div class="sq-block"><h2 style="text-align:center;white-space:pre-wrap;">Bay Health Clinic, Double Bay</h2>
-<p style="white-space:pre-wrap;"><strong>Welcome to Bay Health Clinic,</strong> the Double Bay practice directed by Dr Anubhav Saxena. Set in the heart of Sydney&rsquo;s eastern suburbs, the clinic pairs a calm, considered atmosphere with modern clinical facilities: a dedicated skin-check room with dermoscopy, treatment spaces for minor procedures, and consulting rooms designed for unhurried appointments. The team works alongside trusted allied health and specialist networks, so referrals stay seamless and care stays joined-up. Whether you&rsquo;re here for a same-day concern, a full skin check or a long-term plan, every visit is built around thorough, personal medicine.</p></div>
-        </section>
-
-        <div class="spacer"></div>
-
-        <section class="office-video">
-          <div class="sq-block">
-            <div class="player">
-              <video src="/assets/office-video.mp4" poster="/assets/33-screenshot-2025-09-23-113341-png.png" preload="metadata" playsinline></video>
-              <button class="play-overlay" aria-label="Play video"><span class="disc"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></button>
-            </div>
-          </div>
-        </section>
-
-        <div class="spacer"></div>
-
-        <section class="office-gallery-wrap">
-          <div class="sq-block">
-            <div class="office-gallery">
-              <div class="strip">
-              <div class="slide"><img class="fx-img" src="/assets/24-screenshot-2025-09-23-113129-png.png" alt="Clinic interior" loading="lazy"></div>
-            <div class="slide"><img class="fx-img" src="/assets/25-screenshot-2025-09-23-113149-png.png" alt="Clinic interior" loading="lazy"></div>
-            <div class="slide"><img class="fx-img" src="/assets/26-screenshot-2025-09-23-113205-png.png" alt="Clinic interior" loading="lazy"></div>
-            <div class="slide"><img class="fx-img" src="/assets/27-screenshot-2025-09-23-113223-png.png" alt="Clinic interior" loading="lazy"></div>
-            <div class="slide"><img class="fx-img" src="/assets/28-screenshot-2025-09-23-113237-png.png" alt="Clinic interior" loading="lazy"></div>
-            <div class="slide"><img class="fx-img" src="/assets/29-screenshot-2025-09-23-113251-png.png" alt="Clinic interior" loading="lazy"></div>
-            <div class="slide"><img class="fx-img" src="/assets/30-screenshot-2025-09-23-113305-png.png" alt="Clinic interior" loading="lazy"></div>
-            <div class="slide"><img class="fx-img" src="/assets/31-screenshot-2025-09-23-113317-png.png" alt="Clinic interior" loading="lazy"></div>
-            <div class="slide"><img class="fx-img" src="/assets/32-screenshot-2025-09-23-113329-png.png" alt="Clinic interior" loading="lazy"></div>
-            <div class="slide"><img class="fx-img" src="/assets/33-screenshot-2025-09-23-113341-png.png" alt="Clinic interior" loading="lazy"></div>
-            <div class="slide"><img class="fx-img" src="/assets/34-screenshot-2025-09-23-113353-png.png" alt="Clinic interior" loading="lazy"></div>
-            <div class="slide"><img class="fx-img" src="/assets/35-screenshot-2025-09-23-113405-png.png" alt="Clinic interior" loading="lazy"></div>
-            <div class="slide"><img class="fx-img" src="/assets/36-screenshot-2025-09-23-113353-png.png" alt="Clinic interior" loading="lazy"></div>
-            <div class="slide"><img class="fx-img" src="/assets/37-screenshot-2025-09-23-113415-png.png" alt="Clinic interior" loading="lazy"></div>
-            <div class="slide"><img class="fx-img" src="/assets/38-screenshot-2025-09-23-113427-png.png" alt="Clinic interior" loading="lazy"></div>
-            <div class="slide"><img class="fx-img" src="/assets/39-screenshot-2025-09-23-113440-png.png" alt="Clinic interior" loading="lazy"></div>
+              <div class="sq-block">
+                <h2>About Rudra</h2>
+                <p style="white-space:pre-wrap;"><strong>Rudra Gosalia</strong> is an emerging filmmaker and student who has been involved in various film and media projects in Australia. A proud graduate of the Bachelor of Film and Television program at Bond University, Rudra is part of a new wave of talent driving the flourishing local film industry.</p>
+                <p style="white-space:pre-wrap;">Rudra brings a multifaceted skill set to set, with experience ranging from writing and directing his own short films like <em>Casey's Guide to the Apocalypse</em>, to key grip and G&E roles on other productions such as <em>Us As I Remember</em> and Mason Watts' <em>Growing Pains</em> music video. His work aims to create deeply human, authentic, and visually engaging stories.</p>
               </div>
-              <button class="gal-arrow prev" aria-label="Previous"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
-              <button class="gal-arrow next" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></button>
             </div>
+            <div class="col-6"><div class="sq-block"><img class="fx-img portrait" src="/assets/rudra-about.png" alt="Rudra Gosalia"></div></div>
           </div>
         </section>
 
-        <div class="spacer"></div>
+        <section class="procedures" id="projects">
+          <div class="sq-block"><h2 style="text-align:center;white-space:pre-wrap;">Filmography & Projects</h2></div>
+          <div class="sq-block"><div class="care-index">
+          <a class="care-row" href="https://www.adhdme.au/" target="_blank" rel="noopener">
+            <span class="care-name">ADHDme Public Awareness Campaign</span>
+            <span class="care-tag">Campaign (2026) &middot; Director & Cinematographer</span>
+          </a>
+          <a class="care-row" href="https://www.gofundme.com/f/caseys-guide-to-the-apocalypse-short-film" target="_blank" rel="noopener">
+            <span class="care-name">Casey's Guide to the Apocalypse</span>
+            <span class="care-tag">Short Film (2024) &middot; Writer/Director</span>
+          </a>
+          <a class="care-row" href="https://www.youtube.com/results?search_query=Us+As+I+Remember+short+film" target="_blank" rel="noopener">
+            <span class="care-name">Us As I Remember</span>
+            <span class="care-tag">Short Film (2024) &middot; Key Grip</span>
+          </a>
+          <a class="care-row" href="https://www.youtube.com/results?search_query=Mason+Watts+Growing+Pains" target="_blank" rel="noopener">
+            <span class="care-name">Growing Pains (Mason Watts)</span>
+            <span class="care-tag">Music Video &middot; G&E Swing</span>
+          </a>
+          <a class="care-row" href="https://www.imdb.com/find?q=A+Beautiful+World+2024" target="_blank" rel="noopener">
+            <span class="care-name">A Beautiful World</span>
+            <span class="care-tag">Film (2024) &middot; Actor</span>
+          </a>
+          </div></div>
+        </section>
 
-        <section class="contact">
-          <div class="sq-block"><h2 style="text-align:center;white-space:pre-wrap;">Contact</h2></div>
+        <section class="contact" id="contact">
+          <div class="sq-block"><h2 style="text-align:center;white-space:pre-wrap;">Get in Touch</h2></div>
           <div class="row">
             <div class="col-6">
-              <div class="sq-block"><p style="white-space:pre-wrap;"><strong>Bay Health Clinic</strong><br>2 Cooper Street<br><em>Double Bay NSW 2028</em><br><em>Sydney, Eastern Suburbs</em><br>Australia</p>
-<p style="white-space:pre-wrap;">Phone: (02) 9327 7200<br>Fax: (02) 9326 1878<br>Email: <a href="mailto:info@bayhealth.com.au">info@bayhealth.com.au</a></p>
-</div>
-              <div class="sq-block disclaimer"><p style="white-space:pre-wrap;"><em>Email is not monitored for urgent medical issues. In an emergency, call 000.</em></p></div>
+              <div class="sq-block">
+                <p style="white-space:pre-wrap;"><strong>Rudra Gosalia</strong><br><em>Filmmaker</em><br>Queensland, Australia</p>
+                <p style="white-space:pre-wrap; color:#aaa!important; margin-top:20px;">Looking to collaborate on a film project, music video, or commercial? Feel free to reach out to discuss ideas and creative direction.</p>
+              </div>
+              <div class="btn-wrap" style="margin-top:30px;">
+                <a class="btn" href="mailto:contact@example.com">Email Rudra</a>
+              </div>
             </div>
-            <div class="col-6"><div class="sq-block map"><img src="/assets/53-map-capture.png" alt="Map placeholder — replace with Double Bay embed"></div></div>
+            <div class="col-6">
+              <div class="sq-block" style="text-align: center; display: flex; flex-direction: column; justify-content: center; height: 100%;">
+                 <p class="contact-quote">"Storytelling is the most powerful way to put ideas into the world today."</p>
+              </div>
+            </div>
           </div>
-        </section>
-
-        <section class="booking" id="book">
-          <div class="sq-block"><h3 class="booking-heading">Book an appointment</h3></div>
-          <div class="sq-block"><div class="book-grid">
-            <div class="book-card">
-              <span class="book-name">Bay Health Clinic</span>
-              <span class="book-sub">Double Bay &middot; General practice</span>
-              <span class="book-line">2 Cooper Street &middot; (02) 9327 7200</span>
-              <a class="btn btn-book" href="https://healthengine.com.au/medical-centre/nsw/double-bay/bay-health/s102998" target="_blank" rel="noopener">Book &middot; Double Bay</a>
-            </div>
-            <div class="book-card">
-              <span class="book-name">ADHD Me</span>
-              <span class="book-sub">ADHD assessment &amp; care</span>
-              <span class="book-line">adhdme.au &middot; Beecroft &amp; Double Bay</span>
-              <a class="btn btn-book" href="https://www.adhdme.au/network/anubhav-saxena" target="_blank" rel="noopener">Book &middot; ADHD Me</a>
-            </div>
-            <div class="book-card">
-              <span class="book-name">Beecroft Family Practice</span>
-              <span class="book-sub">Beecroft &middot; Family &amp; skin cancer clinic</span>
-              <span class="book-line">(02) 9484 4788</span>
-              <a class="btn btn-book" href="https://beecroftfp.com.au/" target="_blank" rel="noopener">Book &middot; Beecroft</a>
-            </div>
-          </div></div>
         </section>
 
       </div>
     </main>
 
-    <section class="prefooter" id="preFooter">
-      <div class="layout">
-        <div class="sq-block"><h2 style="text-align:center;white-space:pre-wrap;">Instagram &middot; @beecroftclinic</h2></div>
-        <div class="sq-block"><div class="grid-ig">
-          <a class="tile" href="https://www.instagram.com/beecroftclinic/" target="_blank" rel="noopener"><img class="fx-img" src="/assets/ph/ig-00.svg" alt="Instagram post placeholder" loading="lazy"></a>
-          <a class="tile" href="https://www.instagram.com/beecroftclinic/" target="_blank" rel="noopener"><img class="fx-img" src="/assets/ph/ig-01.svg" alt="Instagram post placeholder" loading="lazy"></a>
-          <a class="tile" href="https://www.instagram.com/beecroftclinic/" target="_blank" rel="noopener"><img class="fx-img" src="/assets/ph/ig-02.svg" alt="Instagram post placeholder" loading="lazy"></a>
-          <a class="tile" href="https://www.instagram.com/beecroftclinic/" target="_blank" rel="noopener"><img class="fx-img" src="/assets/ph/ig-03.svg" alt="Instagram post placeholder" loading="lazy"></a>
-          <a class="tile" href="https://www.instagram.com/beecroftclinic/" target="_blank" rel="noopener"><img class="fx-img" src="/assets/ph/ig-04.svg" alt="Instagram post placeholder" loading="lazy"></a>
-          <a class="tile" href="https://www.instagram.com/beecroftclinic/" target="_blank" rel="noopener"><img class="fx-img" src="/assets/ph/ig-05.svg" alt="Instagram post placeholder" loading="lazy"></a>
-          <a class="tile" href="https://www.instagram.com/beecroftclinic/" target="_blank" rel="noopener"><img class="fx-img" src="/assets/ph/ig-06.svg" alt="Instagram post placeholder" loading="lazy"></a>
-          <a class="tile" href="https://www.instagram.com/beecroftclinic/" target="_blank" rel="noopener"><img class="fx-img" src="/assets/ph/ig-07.svg" alt="Instagram post placeholder" loading="lazy"></a>
-          <a class="tile" href="https://www.instagram.com/beecroftclinic/" target="_blank" rel="noopener"><img class="fx-img" src="/assets/ph/ig-08.svg" alt="Instagram post placeholder" loading="lazy"></a>
-          <a class="tile" href="https://www.instagram.com/beecroftclinic/" target="_blank" rel="noopener"><img class="fx-img" src="/assets/ph/ig-09.svg" alt="Instagram post placeholder" loading="lazy"></a>
-          <a class="tile" href="https://www.instagram.com/beecroftclinic/" target="_blank" rel="noopener"><img class="fx-img" src="/assets/ph/ig-10.svg" alt="Instagram post placeholder" loading="lazy"></a>
-          <a class="tile" href="https://www.instagram.com/beecroftclinic/" target="_blank" rel="noopener"><img class="fx-img" src="/assets/ph/ig-11.svg" alt="Instagram post placeholder" loading="lazy"></a>
-        </div></div>
-        <div class="social-row">
-          <a href="https://www.instagram.com/beecroftclinic/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 64 64"><use href="/assets/social-accounts.svg#instagram-unauth-icon"></use></svg></a>
-          <a href="mailto:info@bayhealth.com.au" aria-label="Email"><svg viewBox="0 0 64 64"><use href="/assets/social-accounts.svg#email-icon"></use></svg></a>
-          <a href="https://www.facebook.com/beecroftclinic" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 64 64"><use href="/assets/social-accounts.svg#facebook-unauth-icon"></use></svg></a>
-          <a href="https://www.adhdme.au/" target="_blank" rel="noopener" aria-label="ADHD Me"><svg viewBox="0 0 64 64"><use href="/assets/social-accounts.svg#tiktok-unauth-icon"></use></svg></a>
-        </div>
-      </div>
-    </section>
-
     <footer id="footer">
       <div class="footer-inner">
-        <p class="site-line"><span class="site-address">Bay Health Clinic &middot; 2&nbsp;Cooper&nbsp;Street, Double&nbsp;Bay&nbsp;NSW&nbsp;2028</span></p>
-        <p class="site-line site-line-2"><a class="site-phone" href="tel:+61293277200">(02)&nbsp;9327&nbsp;7200</a><span class="sep">&middot;</span><a class="site-email" href="mailto:info@bayhealth.com.au">info@bayhealth.com.au</a></p>
+        <p class="site-line"><span class="site-address">Rudra Gosalia &middot; Filmmaker</span></p>
+        <p class="site-line site-line-2"><a class="site-email" href="mailto:contact@example.com">contact@example.com</a></p>
       </div>
     </footer>
-    <div class="footer-legal">
-      <a href="#" rel="noopener">Privacy Policy</a>
-      <a href="#" rel="noopener">Accessibility Statement</a>
-    </div>
-
   </div>
   <script type="module" src="/src/main.js"></script>
 </body>

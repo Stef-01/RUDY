@@ -8,7 +8,7 @@ const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const clearTransforms = els => els.forEach(el => { el.style.transform = ''; });
 
-function reveal(selector, { y = 24, x = 0, scale = 1, per = 0.09, dur = 0.7, amount = 0.25, clear = false } = {}) {
+function reveal(selector, { y = 30, x = 0, scale = 1, per = 0.1, dur = 0.8, amount = 0.2, clear = false } = {}) {
   const els = Array.from(document.querySelectorAll(selector));
   if (!els.length) return;
   els.forEach(el => {
@@ -34,59 +34,96 @@ function springGesture(selector, { hoverScale = 1.02, hoverY = -1, tapScale = 0.
   });
 }
 
+function initHeroLogic() {
+  const heroCopy = document.querySelector('.hero-copy');
+  if (!heroCopy) return;
+
+  // Set initial state
+  heroCopy.style.opacity = 0;
+  heroCopy.style.transform = 'translateY(20px)';
+  let isVisible = false;
+
+  const showHero = () => {
+    if (isVisible) return;
+    isVisible = true;
+    animate(heroCopy, { opacity: 1, y: 0 }, { duration: 1.2, ease: EASE });
+    // Stagger the children elements nicely
+    animate(Array.from(heroCopy.children), 
+      { opacity: [0, 1], y: [15, 0] }, 
+      { duration: 0.8, ease: EASE, delay: stagger(0.15) }
+    );
+  };
+
+  const hideHero = () => {
+    if (!isVisible) return;
+    isVisible = false;
+    animate(heroCopy, { opacity: 0, y: 20 }, { duration: 0.6, ease: EASE });
+  };
+
+  // 20-second cinematic wait
+  let timer = setTimeout(() => {
+    if (window.scrollY < 20) showHero();
+  }, 20000);
+
+  // Scroll triggers
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      showHero();
+      if (timer) { clearTimeout(timer); timer = null; }
+    } else {
+      hideHero();
+    }
+  });
+}
+
 export function initAnimations() {
   if (reduced) return; // everything stays visible and static
 
-  /* ---- load sequence: header + hero (the page's one authored moment) ---- */
-  animate('.header-logo', { opacity: [0, 1], y: [-6, 0] }, { duration: 0.6, ease: EASE, delay: 0.1 });
-  animate('.header-nav a', { opacity: [0, 1], y: [-8, 0] }, { duration: 0.5, ease: EASE, delay: stagger(0.06, { startDelay: 0.2 }) });
-  animate('.hero-copy > *', { opacity: [0, 1], y: [22, 0] }, { duration: 0.85, ease: EASE, delay: stagger(0.11, { startDelay: 0.3 }) });
-  const portrait0 = document.querySelector('.hero-portrait');
-  if (portrait0) animate(portrait0, { opacity: [0, getComputedStyle(portrait0).opacity], x: [30, 0], scale: [1.03, 1] }, { duration: 1.5, ease: EASE, delay: 0.4 });
+  /* ---- load sequence: header ---- */
+  animate('.header-logo', { opacity: [0, 1], y: [-10, 0] }, { duration: 0.8, ease: EASE, delay: 0.1 });
+  animate('.header-nav a', { opacity: [0, 1], y: [-10, 0] }, { duration: 0.6, ease: EASE, delay: stagger(0.08, { startDelay: 0.2 }) });
+
+  /* ---- interactive cinematic hero logic ---- */
+  initHeroLogic();
 
   /* ---- reading progress (teal hairline, top) ---- */
   const bar = document.querySelector('.scroll-progress');
   if (bar) scroll(animate(bar, { scaleX: [0, 1] }, { ease: 'linear' }));
 
-  /* ---- scroll-linked: hero portrait drift + bio portrait counter-drift ---- */
-  const hero = document.querySelector('.hero');
-  if (hero) {
-    scroll(animate('.hero-portrait', { y: [0, 70] }, { ease: 'linear' }),
-      { target: hero, offset: ['start start', 'end start'] });
+  /* ---- scroll-linked parallax: background video slowly scales/moves ---- */
+  const video = document.querySelector('.video-container iframe');
+  if (video) {
+    scroll(animate(video, { y: [0, 150], scale: [1, 1.05] }, { ease: 'linear' }), { offset: ['start start', 'end start'] });
   }
-  const bioP = document.querySelector('.bio .portrait');
-  if (bioP) scroll(animate(bioP, { y: [24, -24] }, { ease: 'linear' }),
-    { target: bioP, offset: ['start end', 'end start'] });
 
+  /* ---- scroll-linked parallax: bio portrait counter-drift ---- */
+  const bioP = document.querySelector('.bio .portrait');
+  if (bioP) scroll(animate(bioP, { y: [40, -40] }, { ease: 'linear' }), { target: bioP, offset: ['start end', 'end start'] });
 
   /* ---- section reveals (staggered, once) ---- */
-  reveal('.press-1 .sq-block', { per: 0.1 });
-  reveal('.bio .col-6:first-child .sq-block, .bio .btn-wrap', { per: 0.12, x: 0, y: 26 });
-  reveal('.press-2 .sq-block', { per: 0.1 });
-  reveal('.procedures h2', { y: 16 });
-  reveal('.care-row', { per: 0.07, y: 14, dur: 0.55, amount: 0.1, clear: true });
-  reveal('.procedures > .sq-block:nth-of-type(3), .procedures .btn-wrap', { per: 0.12 });
-  reveal('.office-intro .sq-block', { y: 22 });
-  reveal('.office-video .player', { y: 0, scale: 0.985, dur: 0.8 });
-  reveal('.strip .slide', { x: 28, y: 0, per: 0.06, dur: 0.6, clear: true });
-  reveal('.contact .col-6:first-child .sq-block, .contact .btn-wrap', { per: 0.11 });
-  reveal('.contact .map', { y: 28, dur: 0.8 });
-  reveal('.booking-heading', { y: 14 });
-  reveal('.book-card', { per: 0.1, y: 24, dur: 0.65, amount: 0.15, clear: true });
-  reveal('.prefooter h2', { y: 16 });
-  reveal('.grid-ig .tile', { per: 0.05, y: 16, scale: 0.95, dur: 0.55, amount: 0.08, clear: true });
-  reveal('.social-row a', { per: 0.06, y: 10, dur: 0.45, clear: true });
-  reveal('.footer-inner .site-line', { y: 12, dur: 0.6 });
+  // Press rows
+  reveal('.press-1 .sq-block', { per: 0.15, y: 30 });
+  
+  // Bio
+  reveal('.bio .col-6:first-child .sq-block, .bio .btn-wrap', { per: 0.15, y: 30 });
+  
+  // Filmography Header
+  reveal('.procedures h2', { y: 20 });
+  
+  // Filmography Rows (Beautiful Stagger)
+  reveal('.care-row', { per: 0.15, y: 40, dur: 0.8, amount: 0.1, clear: true });
+  
+  // Contact
+  reveal('.contact .col-6:first-child .sq-block, .contact .btn-wrap', { per: 0.15, y: 30 });
+  reveal('.contact .contact-quote', { y: 30, scale: 0.95, dur: 1 });
+  
+  // Footer
+  reveal('.prefooter h2', { y: 20 });
+  reveal('.footer-inner .site-line', { y: 15, dur: 0.8 });
 
   /* ---- gesture springs ---- */
-  springGesture('.btn');
+  springGesture('.btn', { hoverScale: 1.05, tapScale: 0.95 });
   springGesture('.nav-pill', { hoverScale: 1.045, hoverY: 0, tapScale: 0.96 });
-  springGesture('.gal-arrow', { hoverScale: 1.08, hoverY: 0, tapScale: 0.92 });
-  springGesture('.book-card', { hoverScale: 1.004, hoverY: -6, tapScale: 0.998 });
-
-  /* ---- perpetual micro-loop: the play disc breathes ---- */
-  const disc = document.querySelector('.play-overlay .disc');
-  if (disc) animate(disc, { scale: [1, 1.07, 1] }, { duration: 2.6, repeat: Infinity, ease: 'easeInOut' });
 }
 
 /* Spring-driven strip slider (replaces CSS transition) */
